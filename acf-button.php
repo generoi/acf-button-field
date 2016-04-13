@@ -30,6 +30,13 @@ class acf_field_button_plugin
 		load_textdomain( $domain, $mofile );
 		*/
 		
+		$version = get_option( 'acf_version' );
+
+		if( $version[0] === '5' ) {
+			// version 5 (pro)
+			add_action('acf/init', array($this, 'register_fields'));
+			return;
+		}	
 		
 		// version 4+
 		add_action('acf/register_fields', array($this, 'register_fields'));	
